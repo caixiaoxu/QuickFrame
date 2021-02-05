@@ -1,0 +1,4 @@
+include ':frame-base'
+include ':app'
+includeBuild 'VersionPlugin'
+rootProject.name = "QuickFrame"
