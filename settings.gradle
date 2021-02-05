@@ -1,4 +1,5 @@
-include ':frame-base'
+include ':kotlin-base'
+include ':frame-baselib'
 include ':app'
 includeBuild 'VersionPlugin'
 rootProject.name = "QuickFrame"

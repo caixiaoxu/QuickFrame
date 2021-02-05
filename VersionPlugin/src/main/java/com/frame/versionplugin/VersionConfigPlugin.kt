@@ -33,13 +33,18 @@ const val implementation = "implementation"
 
 class VersionConfigPlugin : Plugin<Project> {
     override fun apply(project: Project) {
+        //配置项目内模块
         project.plugins.config(project)
+        //打印各流程时间
         project.gradle.addListener(TimingsListener())
     }
 
+    /**
+     * 配置项目内的模块
+     * 根据AppModel或Library,分别进行相应的配置信息
+     */
     private fun PluginContainer.config(project: Project) {
         whenPluginAdded {
-            project.logger.warn("--------------$this")
             when (this) {
                 is AppPlugin -> {
                     //公共插件
@@ -134,8 +139,11 @@ class VersionConfigPlugin : Plugin<Project> {
             add(implementation, Google.material)
             configTestDependencies()
 
-            // 统一引入 baselib,当有baselib作为library时
-            add(implementation, (project(":frame-base")))
+            // 统一引入
+            //frame-baselib 项目基础库
+            add(implementation, (project(":frame-baselib")))
+            //kotlin-base Kotlin扩展库
+            add(implementation, (project(":kotlin-base")))
         }
     }
 
