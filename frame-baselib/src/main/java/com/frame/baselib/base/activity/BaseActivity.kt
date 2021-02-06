@@ -5,11 +5,15 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * Title : Activity基类
+ * Title : Activity基类（最基础类）
  * Author: Lsy
  * Date: 2/5/21 5:35 PM
  * Version:
  * Description:
+ * {
+ *      创建基本的初始化方法
+ *      处理快速点击的问题
+ * }
  * History:
  * <author> <time> <version> <desc>
  * 作者姓名 修改时间 版本号 描述
@@ -18,8 +22,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getStyleId()?.let { setTheme(it) }
-        setContentView(getLayoutViewId())
+        styleId()?.let { setTheme(it) }
+        setContentView(layoutResId())
+        initBase()
 
         initView()
         initListener()
@@ -30,12 +35,17 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 样式Id
      */
-    fun getStyleId(): Int? = null
+    fun styleId(): Int? = null
 
     /**
      * 布局Id
      */
-    abstract fun getLayoutViewId(): Int
+    abstract fun layoutResId(): Int
+
+    /**
+     * 给下次基类使用的方法
+     */
+    protected fun initBase(){}
 
     /**
      * 初始化控件
@@ -77,9 +87,5 @@ abstract class BaseActivity : AppCompatActivity() {
                 clickListener.onClick(view)
             }
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 }
