@@ -3,6 +3,36 @@ plugins {
     id 'version-plugin'
 }
 android {
+
+    flavorDimensions "channel"
+    //渠道
+    productFlavors {
+        //应用宝
+        yingyongbao {
+            dimension "channel"
+        }
+        //华为
+        huawei {
+            dimension "channel"
+        }
+        //小米
+        xiaomi {
+            dimension "channel"
+        }
+    }
+
+    //签名
+    signingConfigs {
+        debug {
+
+        }
+
+        release {
+
+        }
+    }
+
+    //打包环境
     buildTypes {
         debug {
             ext.enableCrashlytics = false
@@ -11,9 +41,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-    androidExtensions {
-        experimental = true
     }
 }
 

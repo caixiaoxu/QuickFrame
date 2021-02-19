@@ -45,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 给下次基类使用的方法
      */
-    protected fun initBase(){}
+    protected open fun initBase(){}
 
     /**
      * 初始化控件

@@ -13,6 +13,7 @@ import org.gradle.api.plugins.PluginContainer
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinAndroidPluginWrapper
 import org.jetbrains.kotlin.gradle.plugin.getKotlinPluginVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -51,6 +52,9 @@ class VersionConfigPlugin : Plugin<Project> {
                     project.configCommonPlugin()
                     //公共 android 配置项
                     project.extensions.getByType<AppExtension>().applyAppCommons(project)
+                    project.extensions.getByType<AndroidExtensionsExtension>().apply {
+                        isExperimental = true
+                    }
                     //公共依赖
                     project.configAppDependencies()
                 }
